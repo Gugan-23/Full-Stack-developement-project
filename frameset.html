@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column Layout with Divs</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+        .left, .right {
+            background-color: #f9f9f9;
+            border-right: 1px solid #ccc;
+        }
+        .center {
+            background-color: #fff;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #333;
+        }
+		#b1{
+		background-color:red;
+		width:50px;
+		}
+		
+		 #b1 {
+    margin-top: 40px;
+    background-color: green;
+	
+    height: 40px; 
+    width: 120px; 
+    color: white; 
+    font-size: 16px;
+	border: none; 
+    border-radius: 550px; 
+    cursor: pointer; 
+	 }
+		
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column left">
+            <img src="https://www.enableme.ke/global/topics/living/image-thumb__855__header-image_auto_0d16de8906fb04abe1c064d2108dd376/barrier~-~media--60c2f037--query.webp" alt="Educational Concept">
+            <p>Smart Home Technologies: Devices that enable independent living, such as automated lighting or voice-activated assistants.
+<br>Telehealth: Remote healthcare services, including virtual consultations and therapy sessions.Holistic and Integrated Care Models
+Whole-Person Care: Addressing physical, emotional, and social needs comprehensively.
+Integrated Care Networks: Coordinated care involving various service providers and community resources.
+Legislation and Policy Development
+Rights and Protections: Laws ensuring accessibility, anti-discrimination, and equal opportunities.
+Funding and Support Programs: Government and non-profit initiatives to provide financial assistance and services.</p>
+
+        </div>
+        <div class="column center">
+            <img src="https://images.herzindagi.info/image/2024/May/disability-main-2.jpg" alt="User Icon">
+            <p> Access to Services
+Geographical Barriers: Limited services in rural or remote areas.
+Financial Constraints: High costs of care and insufficient funding or insurance coverage.
+Social Stigma and Discrimination
+Misconceptions: Overcoming societal biases and stereotypes about disabilities.
+Advocacy: Promoting awareness and understanding to foster inclusivity.
+ Caregiver Stress and Burnout
+Support for Caregivers: Providing resources and respite for those caring for individuals with disabilities to prevent burnout.</p>
+			<button type="button" id="b1" onclick="ba()"><center>Back</center></button>
+			  </div>
+        <div class="column right">
+            <img src="https://static-prod.adweek.com/wp-content/uploads/2021/10/disability-awareness-2021.jpg.webp" alt="User Icon">
+            <p>. Person-Centered Approach
+Individualized Care: Tailoring services to meet the unique needs and preferences of each individual.
+Empowerment: Encouraging autonomy and decision-making.
+Inclusivity and Accessibility
+Barrier-Free Environments: Ensuring physical, social, and digital environments are accessible.
+Equal Opportunities: Promoting inclusive education, employment, and social participation.
+ Collaboration and Coordination
+Interdisciplinary Teams: Involving healthcare providers, therapists, social workers, and family members in the care plan.
+Community Resources: Leveraging local services and support networks.</p>
+        </div>
+    </div>
+	<script>
+	function ba(){
+	window.location.href="home.html"
+	
+	}
+	</script>
+</body>
+</html>

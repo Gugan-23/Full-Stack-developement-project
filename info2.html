@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Login Info</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+			font-size:18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 550px;
+            background-color: white;
+        }
+        .info-container {
+            background: lightblue;
+            padding: 150px;
+			height:150px;
+			width:150px;
+            border-radius: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 9.5);
+			
+			transform: translateX(-70%);
+        }
+        .info-container h2 {
+            margin-bottom: 20px;
+        }
+        .info-container p {
+            margin-bottom: 10px;
+        }
+		.info-container button{
+            width: 80%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+			margin-top: 10px; 
+            margin-bottom: 10px; 
+            
+			transform: translateX(20%);
+        }
+		.info-container button:hover {
+            background-color: black;
+        }
+		img {
+		margin-top: 10px; 
+            height: 350px; /* Adjust image height */
+            width: 360px; /* Adjust image width */
+            border-radius: 50%; /* Optional: Make image circular */
+			transform: translateX(150%);  
+			box-shadow: 0 0 10px rgba(0, 0, 0, 2.50);
+     }
+    </style>
+</head>
+<body>
+	<img src="https://cdn.vectorstock.com/i/1000v/53/42/user-member-avatar-face-profile-icon-vector-22965342.avif" id="io" alt="Profile Image">
+	
+    <div class="info-container">
+        <h2>Profile</h2>
+        <p>Username: <span id="newUsername"></span></p>
+        <p>Password: <span id="newPassword"></span></p>
+		<p>Age: <span id="nage"></span></p>
+		
+        <button type="button" onclick="goBack()">Back</button>
+    </div>
+	
+
+    <script>
+        function displayLoginInfo() {
+            var newUsername = localStorage.getItem("newUsername");
+            var newPassword = localStorage.getItem("newPassword");
+			var nage=localStorage.getItem("nage");
+            if (newUsername && newPassword) {
+                document.getElementById("newUsername").textContent = newUsername;
+                document.getElementById("newPassword").textContent = newPassword;
+
+            } else {
+                alert("No login information found.");
+                goBack();
+            }
+        }
+
+        function goBack() {
+            window.location.href = "signup.html";
+        }
+
+        window.onload = displayLoginInfo;
+    </script>
+	
+	
+	
+</body>
+</html>
+
