@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblack;
+            margin: 0;
+            display: flex;
+        }
+        .home {
+            background-color: lightblue;
+            height: 10px;
+        }
+        .home button {
+            margin-top: 40px;
+            background-color: pink;
+            height: 40px;
+            width: 10px;
+            color: black;
+            font-size: 16px;
+            border: none;
+            border-radius: 550px;
+            cursor: pointer;
+            transform: translateX(850%);
+        }
+        #hi2 { transform: translateX(-90%); }
+        #hi3 { transform: translateX(-50%); }
+        #hi4 { transform: translateX(-10%); }
+        #hi5 { width: 10px; transform: translateX(20%); }
+        #hi6 { width: 10px; transform: translateX(50%); }
+        #hi { width: 10px; transform: translateX(780%); }
+        #hi7 { width: 14px; transform: translateX(70%); }
+        video {
+            height: 500px;
+            width: 650px;
+            border-radius: 30%;
+            transform: translateX(50%);
+        }
+        #p2 {
+            margin-top: 50%;
+            text-align: right;
+        }
+        .sidebar {
+            width: 10%;
+            background-color: rgba(181, 37, 37, 0.038);
+            color: black;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+            z-index: 2;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            top: 0;
+            left: 0;
+        }
+        .sidebar h1 {
+            margin: 0 0 20px;
+            color: white;
+            text-align: right;
+        }
+        .sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar nav ul li a,
+        .sidebar nav ul li button {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            border-radius: 2px;
+            background-color: rgba(208, 36, 36, 0.5);
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            margin-top: 100%;
+        }
+        .sidebar nav ul li a:hover,
+        .sidebar nav ul li button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        main {
+            margin-left: 15%;
+            width: 70%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+            max-width: calc(100% - 20px);
+            margin-bottom: 100px;
+        }
+        form {
+            width: 100%;
+            max-width: 500px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        form input[type="text"],
+        form textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form button[type="submit"] {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        form button[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Add Location</h1>
+        <nav>
+            <ul>
+                <li><a id="as" onclick="home()" href="home.html">Home</a></li>
+                <li><button id="currentLocationButton">Current Location</button></li>
+                <li><button id="detailsButton">Details</button></li>
+            </ul>
+        </nav>
+    </div>
+    <main>
+        <div id="map"></div>
+        <form id="locationForm">
+            <label for="latitude">Latitude:</label>
+            <input type="text" id="latitude" name="latitude" required>
+            <label for="longitude">Longitude:</label>
+            <input type="text" id="longitude" name="longitude" required>
+            <label for="location-name">Location Name:</label>
+            <input type="text" id="location-name" name="location-name" required>
+            <label for="location-description">Description:</label>
+            <textarea id="location-description" name="location-description" required></textarea>
+            <button type="submit">Add Location</button>
+        </form>
+    </main>
+    <footer id="p2"></footer>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const map = L.map('map').setView([51.505, -0.09], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            function addLocation() {
+                const latitude = parseFloat(document.getElementById("latitude").value);
+                const longitude = parseFloat(document.getElementById("longitude").value);
+                const name = document.getElementById("location-name").value;
+                const description = document.getElementById("location-description").value;
+
+                if (name && description && !isNaN(latitude) && !isNaN(longitude)) {
+                    const marker = L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup(`<b>${name}</b><br>${description}`).openPopup();
+
+                    const locations = JSON.parse(localStorage.getItem('locations')) || [];
+                    const locationData = { name, description, latitude, longitude };
+                    locations.push(locationData);
+                    localStorage.setItem('locations', JSON.stringify(locations));
+
+                    alert("Location added successfully!");
+                    form.reset();
+                } else {
+                    alert("Please provide valid inputs.");
+                }
+            }
+
+            document.getElementById('locationForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                addLocation();
+            });
+
+            document.getElementById('currentLocationButton').addEventListener('click', function () {
+                map.locate({ setView: true, maxZoom: 16 });
+
+                function onLocationFound(e) {
+                    const radius = e.accuracy / 2;
+                    L.marker(e.latlng).addTo(map)
+                        .bindPopup(`You are within ${radius} meters from this point`).openPopup();
+                    L.circle(e.latlng, radius).addTo(map);
+                }
+
+                map.on('locationfound', onLocationFound);
+                map.on('locationerror', function(e) {
+                    alert(e.message);
+                });
+            });
+
+            document.getElementById('detailsButton').addEventListener('click', function () {
+                const locations = JSON.parse(localStorage.getItem('locations')) || [];
+                let details = "Stored Locations:\n";
+                locations.forEach((loc, index) => {
+                    details += `${index + 1}. Name: ${loc.name}, Description: ${loc.description}, Latitude: ${loc.latitude}, Longitude: ${loc.longitude}\n`;
+                });
+                alert(details);
+            });
+        });
+    </script>
+</body>
+</html>
