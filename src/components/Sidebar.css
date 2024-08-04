@@ -1,0 +1,48 @@
+/* src/components/Sidebar.css */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #f4f4f4;
+    padding: 20px;
+    transition: width 0.3s;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .collapse-toggle {
+    background-color: #ddd;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .sidebar-title {
+    margin: 0;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .sidebar-items button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar-items button:hover {
+    background-color: #ddd;
+  }
+      

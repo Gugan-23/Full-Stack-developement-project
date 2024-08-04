@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import Filter from './components/Filter';
+import { TaskProvider } from './context/TaskContext';
 
 function App() {
+  const [view, setView] = useState('home');
+
+  const handleViewChange = (view) => {
+    setView(view);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TaskProvider>
+      <div style={{ display: 'flex' }}>
+        <Sidebar onViewChange={handleViewChange} />
+        <div style={{ marginLeft: '250px', padding: '20px', width: '100%' }}>
+          {view === 'home' && <TaskList />}
+          {view === 'add' && <TaskForm />}
+          {view === 'search' && <Filter />}
+          {view === 'completed' && <TaskList filter="completed" />}
+          {view === 'pending' && <TaskList filter="pending" />}
+        </div>
+      </div>
+    </TaskProvider>
   );
 }
 

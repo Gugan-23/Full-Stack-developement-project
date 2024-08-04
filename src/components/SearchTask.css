@@ -1,0 +1,23 @@
+/* src/components/SearchTask.css */
+.search-task {
+    padding: 20px;
+  }
+  
+  .search-task input[type="text"],
+  .search-task input[type="date"] {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-list p {
+    font-style: italic;
+  }
+  
