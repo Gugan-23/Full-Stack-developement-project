@@ -3,24 +3,30 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function UserDashboard() {
+function CaretakerDashboard() {
   const navigate = useNavigate();
 
   const go = () => {
-    navigate('/profile');
+    navigate('/profilecare');
   };
   
   const ab = () => {
-    navigate('/about');
+    navigate('/aboutuscare');
   };
 
   const lo = () => {
-    navigate('/location');
+    navigate('/locationcare');
+
   };
+  const lo1 = () => {
+    navigate('/requestcare');
+
+  };
+
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div className="home" style={{ backgroundColor: 'lightblue', height: '100px' }}>
+      <div className="home" style={{ backgroundColor: 'pink', height: '100px' }}>
         <button
           id="hi"
           type="button"
@@ -55,7 +61,7 @@ function UserDashboard() {
             cursor: 'pointer',
             transform: 'translateX(-90%)',
           }}
-          onClick={() => navigate('/user-dashboard')}
+          onClick={() => navigate('/caretaker-dashboard')}
         >
           Home
         </button>
@@ -74,7 +80,7 @@ function UserDashboard() {
             cursor: 'pointer',
             transform: 'translateX(-50%)',
           }}
-          onClick={() => navigate('/shoping')}
+          onClick={() => navigate('/shopingcare')}
         >
           Shop now
         </button>
@@ -93,7 +99,7 @@ function UserDashboard() {
             cursor: 'pointer',
             transform: 'translateX(-10%)',
           }}
-          onClick={() => navigate('/contactus')}
+          onClick={() => navigate('/caretaker')}
         >
           Contact us
         </button>
@@ -112,7 +118,7 @@ function UserDashboard() {
             cursor: 'pointer',
             transform: 'translateX(20%)',
           }}
-          onClick={() => navigate('/chat')}
+          onClick={() => navigate('/chatcare')}
         >
           Chat with expert
         </button>
@@ -148,11 +154,29 @@ function UserDashboard() {
             border: 'none',
             borderRadius: '50px',
             cursor: 'pointer',
-            transform: 'translateX(70%)',
+            transform: 'translateX(60%)',
           }}
           onClick={ab}
         >
           About us
+        </button>
+        <button
+          id="hi8"
+          type="button"
+          style={{
+            marginTop: '40px',
+            backgroundColor: 'green',
+            height: '40px',
+            width: '140px',
+            color: 'white',
+            fontSize: '16px',
+            border: 'none',
+            borderRadius: '50px',
+            cursor: 'pointer',
+            transform: 'translateX(90%)',
+          }}
+          onClick={lo1}
+        >Requests
         </button>
       </div>
 
@@ -173,4 +197,4 @@ function UserDashboard() {
   );
 }
 
-export default UserDashboard;
+export default CaretakerDashboard;
