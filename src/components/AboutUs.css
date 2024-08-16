@@ -1,0 +1,51 @@
+/* src/components/AboutUs.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.left, .right {
+    background-color: #f9f9f9;
+    border-right: 1px solid #ccc;
+}
+
+.center {
+    background-color: #fff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #333;
+}
+
+#b1 {
+    margin-top: 40px;
+    background-color: green;
+    height: 40px; 
+    width: 120px; 
+    color: white; 
+    font-size: 16px;
+    border: none; 
+    border-radius: 50px; 
+    cursor: pointer; 
+}
